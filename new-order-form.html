@@ -16,7 +16,7 @@
     function postNewOrder() {
         let order = $("#formOrder").serialize();
 
-        let posting = $.post( "http://localhost:8888/php-socket/emit_test.php", order );
+        let posting = $.post( "http://localhost:8888/php-socket/emit_order.php", order );
         posting.done(function (response) {
             console.log(response);
         })
