@@ -7,6 +7,29 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel='stylesheet'
         href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <style>
+        .container {
+            margin-bottom: 20px
+        }
+
+        .center-div {
+            float: none;
+            margin: 0 auto;
+        }
+
+        .center-text {
+            text-align: center
+        }
+
+        .medium-screen {
+            max-width: 800px;
+        }
+
+        .margin-sides {
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+    </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <title>New Order</title>
 
@@ -16,16 +39,16 @@
     function postNewOrder() {
         let order = $("#formOrder").serialize();
 
-        let posting = $.post( "http://localhost:8888/php-socket/emit_order.php", order );
+        let posting = $.post("http://localhost:8888/php-socket/emit_order.php", order);
         posting.done(function (response) {
             console.log(response);
         })
     }
 </script>
 
-<body>
-    <div class="row">
-        <div class="col-md-3" style="float: none; margin: 0 auto;">
+<body class="medium-screen">
+    <div class="row container margin-sides">
+        <div class="col-md-12 center-div">
             <form id="formOrder">
 
                 <div class="form-group">
@@ -52,7 +75,7 @@
                     <label for="instructions">Instructions</label>
                     <textarea name="instructions" id="instructions" cols="30" rows="10" class="form-control"></textarea>
                 </div>
-                
+
             </form>
 
             <button class="btn btn-block btn-success" onclick="postNewOrder()">Enviar</button>
