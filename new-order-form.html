@@ -39,18 +39,18 @@
     function postNewOrder() {
         let order = $("#formOrder").serialize();
 
-        let posting = $.post("http://localhost:8888/php-socket/emit_order.php", order);
+        let posting = $.post("https://stormy-crag-96740.herokuapp.com/php-socket/emit_order.php", order);
         posting.done(function (response) {
             console.log(response);
         })
     }
 </script>
 
-<body class="medium-screen">
-    <div class="row container margin-sides">
-        <div class="col-md-12 center-div">
+<body>
+    <div class="row container">
+        <div class="col-md-12 margin-sides center-div">
             <form id="formOrder">
-
+                <h2>Create Order</h2>
                 <div class="form-group">
                     <label for="first_name">First Name</label>
                     <input class="form-control" type="text" id="first_name" name="first_name">
