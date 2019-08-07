@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='stylesheet'
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <title>New Order</title>
+
+</head>
+
+<script>
+    function postNewOrder() {
+        let order = $("#formOrder").serialize();
+
+        let posting = $.post( "http://localhost:8888/php-socket/emit_test.php", order );
+        posting.done(function (response) {
+            console.log(response);
+        })
+    }
+</script>
+
+<body>
+    <div class="row">
+        <div class="col-md-3" style="float: none; margin: 0 auto;">
+            <form id="formOrder">
+
+                <div class="form-group">
+                    <label for="first_name">First Name</label>
+                    <input class="form-control" type="text" id="first_name" name="first_name">
+                </div>
+
+                <div class="form-group">
+                    <label for="last_name">Last Name</label>
+                    <input class="form-control" type="text" id="last_name" name="last_name">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input class="form-control" type="email" id="email" name="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="instructions">Instructions</label>
+                    <textarea name="instructions" id="instructions" cols="30" rows="10" class="form-control"></textarea>
+                </div>
+
+                <!-- <input type="button" name="Enviar" class="btn btn-block btn-success" onclick="postNewOrder()"> -->
+
+
+            </form>
+
+            <button class="btn btn-block btn-success" onclick="postNewOrder()">Enviar</button>
+        </div>
+    </div>
+</body>
+
+</html>
