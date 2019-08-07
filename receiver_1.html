@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel='stylesheet'
+        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <script>
+        var socket = io.connect("http://localhost:3001");
+
+        socket.on("new_order", function (order) {
+
+            let toCookHtml = `
+            <div class="col-md-12">
+                <div class="thumbnail">
+                    <div class="caption">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <h3>${order.first_name} ${order.last_name}</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-7">
+                                <p>${order.email}</p>
+                            </div>
+                            <div class="col-md-5">
+                                <p>${order.product}</p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p>${order.instructions}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            `;
+
+            $("#toCook").append(toCookHtml);
+            console.log(JSON.stringify(order));
+        })
+    </script>
+    <title>Document</title>
+</head>
+
+<body>
+
+    <div class="row" style="float: none; margin: 0 auto;"> 
+
+        <div class="col-md-4" >
+                <h3>To cook</h3>
+                <div id="toCook">
+                    <div class="col-md-12">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3>Fredin Funez</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <p>fredinfu@gmail.com</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p>Cheese Hamburpizza</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p>Instrucciones de burger sin mostaza</p>
+                                    </div>
+                                </div>
+                            </div>    
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+
+        <div class="col-md-4" >
+            <h3>Cooking</h3>
+            <div id="cooking">
+                <div class="col-md-12">
+                    <div class="thumbnail">
+                        <div class="caption">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h3>Alexander Rodriguez</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-7">
+                                    <p>arodrig@gmail.com</p>
+                                </div>
+                                <div class="col-md-5">
+                                    <p>Papas Locas</p>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p>Instrucciones de salsa extra</p>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-md-4" >
+                <h3>Cooked</h3>
+                <div id="cooked">
+                    <div class="col-md-12">
+                        <div class="thumbnail">
+                            <div class="caption">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <h3>Jose Claros</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-7">
+                                        <p>jclaros@gmail.com</p>
+                                    </div>
+                                    <div class="col-md-5">
+                                        <p>Piiza con pinia</p>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <p>Instrucciones de extra pinia</p>
+                                    </div>
+                                </div>
+                            </div>
+    
+                        </div>
+                    </div>
+    
+                </div>
+            </div>
+    </div>
+
+</body>
+
+</html>
