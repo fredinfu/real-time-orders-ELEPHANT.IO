@@ -25,7 +25,10 @@
         $client = new Client($version);
 
         $client->initialize();
-        $client->emit("new_order", $order);
+
+        
+
+        $client->emit("emit_order", $order);
 
         $client->close();
 

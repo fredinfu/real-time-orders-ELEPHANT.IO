@@ -13,14 +13,32 @@ logger.info('SocketIO > listening on port ');
 var app = express();
 var http_server = http.createServer(app).listen(3001);
 
-function emitNewOrder(http_server) {
+function emitOrder(http_server) {
     var io = socket.listen( http_server );
 
+    // var newOrder = io
+    // .of('/new_order')
+    // .on('connection')
     io.sockets.on('connection', function(socket) {
-        socket.on("new_order", function (data) {
-            io.emit("new_order",data);
+        socket.on("emit_order", function (data) {
+            let newData = data;
+            
+            if(newData.state=="toCook"){
+                io.emit("new_order",newData);
+            }
+            
+            if(newData.state=="cooking"){
+                io.emit("preparing_order",newData);
+            }
+
+            if(newData.state=="cooked"){
+                io.emit("finished_order",newData);
+            }
+            
+            console.log(`newData.state: ${newData.state}`)
         })
     });
 }
 
-emitNewOrder(http_server);
+
+emitOrder(http_server);

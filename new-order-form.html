@@ -38,7 +38,7 @@
 <script>
     function postNewOrder() {
         let order = $("#formOrder").serialize();
-
+        console.log(order);
         let posting = $.post("http://localhost:8888/php-socket/emit_order.php", order);
         posting.done(function (response) {
             console.log(response);
@@ -51,7 +51,7 @@
     <div class="row container">
         <div class="col-md-12 margin-sides center-div">
             <form id="formOrder">
-                <h2>New Order</h2>
+                <h2>Process Order</h2>
                 <div class="form-group">
                     <label for="first_name">First Name</label>
                     <input class="form-control" type="text" id="first_name" name="first_name">
@@ -73,8 +73,17 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="state">State</label>
+                    <select class="form-control" name="state" id="state">
+                        <option value="toCook">To cook</option>
+                        <option value="cooking">Cooking</option>
+                        <option value="cooked">Cooked</option>
+                    </select>                    
+                </div>
+
+                <div class="form-group">
                     <label for="instructions">Instructions</label>
-                    <textarea name="instructions" id="instructions" cols="30" rows="10" class="form-control"></textarea>
+                    <textarea name="instructions" id="instructions" cols="30" rows="4" class="form-control"></textarea>
                 </div>
 
             </form>
