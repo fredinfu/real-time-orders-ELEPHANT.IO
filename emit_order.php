@@ -7,11 +7,16 @@
 
     include("vendor/autoload.php");
 
+    $localhostAddress = "http://localhost:3001";
+    $localIpAddress = "http://192.168.75.143:3001";
+    $herokuAddress = "https://stormy-crag-96740.herokuapp.com:3001";
+
+    $nodeServerAddress = $localIpAddress;
+
     use ElephantIO\Client;
     use ElephantIO\Engine\SocketIO\Version2X;
 
     try {
-        
         $order = array();
 
         foreach ($_POST as $key => $value){
@@ -23,7 +28,7 @@
 
         echo json_encode($order);
 
-        $version = new Version2X("http://localhost:3001");
+        $version = new Version2X($nodeServerAddress);
 
         $client = new Client($version);
 

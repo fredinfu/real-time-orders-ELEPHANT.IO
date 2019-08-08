@@ -1,4 +1,10 @@
-var socket = io.connect("http://localhost:3001");
+var localIpAddress = "http://192.168.75.143:3001/";
+var localHostAddress =  "http://localhost:3001/";
+var herokuAddress = "https://stormy-crag-96740.herokuapp.com:3001";
+
+var nodeServerAddress = localIpAddress;
+
+var socket = io.connect(nodeServerAddress);
 
 socket.on("new_order", function (order) {
 

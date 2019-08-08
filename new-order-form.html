@@ -31,21 +31,10 @@
         }
     </style>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="src/new-order.js"></script>
     <title>New Order</title>
 
 </head>
-
-<script>
-    function postNewOrder() {
-        let order = $("#formOrder").serialize();
-        console.log(order);
-        let posting = $.post("http://localhost:8888/php-socket/emit_order.php", order);
-        posting.done(function (response) {
-            console.log(response);
-            alert("Order sent!");
-        })
-    }
-</script>
 
 <body>
     <div class="row container">
