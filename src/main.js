@@ -2,100 +2,58 @@ var socket = io.connect("http://localhost:3001");
 
 socket.on("new_order", function (order) {
 
-    let toCookHtml = `
-    <div class="col-md-12">
-        <div class="thumbnail">
-            <div class="caption">
-                <div class="row">
-                    <div class="col-md-12">
-                        <h3>${order.first_name} ${order.last_name}</h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-7">
-                        <p>${order.email}</p>
-                    </div>
-                    <div class="col-md-5">
-                        <p>${order.product}</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <p>${order.instructions}</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    `;
+    let toCookHtml = getOrderComponent(order);
+    $("#toCook").append(toCookHtml);    
 
-    $("#toCook").append(toCookHtml);
-    console.log(JSON.stringify(order));
 })
 
 socket.on("preparing_order", function (order) {
 
-let cookingHtml = `
-<div class="col-md-12">
-    <div class="thumbnail">
-        <div class="caption">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>${order.first_name} ${order.last_name}</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-7">
-                    <p>${order.email}</p>
-                </div>
-                <div class="col-md-5">
-                    <p>${order.product}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p>${order.instructions}</p>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-`;
+    let cookingHtml = getOrderComponent(order);
+    $("#cooking").append(cookingHtml);
 
-$("#cooking").append(cookingHtml);
-console.log(JSON.stringify(order));
 })
 
 socket.on("finished_order", function (order) {
 
-let cookedHtml = `
-<div class="col-md-12">
-    <div class="thumbnail">
-        <div class="caption">
-            <div class="row">
-                <div class="col-md-12">
-                    <h3>${order.first_name} ${order.last_name}</h3>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-7">
-                    <p>${order.email}</p>
-                </div>
-                <div class="col-md-5">
-                    <p>${order.product}</p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                    <p>${order.instructions}</p>
+    let cookedHtml = getOrderComponent(order);
+    $("#cooked").append(cookedHtml);
+
+})
+
+function getOrderComponent(order){
+    let html = `
+        <div class="col-md-12">
+            <div class="thumbnail">
+                <div class="caption">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h3>${order.full_name}</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-7">
+                            <p>${order.email}</p>
+                        </div>
+                        <div class="col-md-5">
+                            <p>${order.product}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <p>${order.instructions}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <small>${order.time}</small>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</div>
-`;
+        `;
 
-$("#cooked").append(cookedHtml);
-console.log(JSON.stringify(order));
-})
+    return html;
+}
 

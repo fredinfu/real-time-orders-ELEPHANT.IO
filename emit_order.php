@@ -18,6 +18,9 @@
             $order[$key] = $value;  
         }
 
+        $now = new DateTime();
+        $order["timestamp"] = $now->format('d-m-Y H:i:s');
+
         echo json_encode($order);
 
         $version = new Version2X("http://localhost:3001");
