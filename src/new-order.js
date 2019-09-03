@@ -1,8 +1,8 @@
-var localIpAddress = "http://192.168.75.143:8888/";
-var localHostAddress =  "http://localhost:8888/";
-var herokuAddress = "https://stormy-crag-96740.herokuapp.com:8888";
+var localIpAddress = "http://192.168.75.143/";
+var localHostAddress =  "http://localhost/";
+var herokuAddress = "https://stormy-crag-96740.herokuapp.com";
 
-var serverAddress = localIpAddress;
+var serverAddress = herokuAddress;
 
 function postNewOrder() {
     let order = $("#formOrder").serialize();

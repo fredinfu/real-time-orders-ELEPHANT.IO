@@ -7,11 +7,11 @@
 
     include("vendor/autoload.php");
 
-    $localhostAddress = "http://localhost:3001";
-    $localIpAddress = "http://192.168.75.143:3001";
+    $localhostAddress = "http://localhost:3002";
+    $localIpAddress = "http://192.168.75.143:3002";
     $herokuAddress = "https://stormy-crag-96740.herokuapp.com:3001";
 
-    $nodeServerAddress = $localIpAddress;
+    $nodeServerAddress = $localhostAddress;
 
     use ElephantIO\Client;
     use ElephantIO\Engine\SocketIO\Version2X;
